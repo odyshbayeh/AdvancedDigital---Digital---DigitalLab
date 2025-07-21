@@ -1,0 +1,29 @@
+
+////ody shbayeh mux 8to1//// 
+////project_1201462////
+
+module mux8to1_ody_1201462 #(parameter n=3)( a,b,c,d,e,f,g,h,s0,s1,s2, out);//module for the mux 8to1
+//inputs
+input  [n:0] a, b, c, d,e,f,g,h;
+input  s0, s1, s2;
+//outputs
+output reg [n:0] out;
+//the mux operation to choose the minterms depending on the selection value
+always @ (a or b or c or d or e or f or g or h ,s0, s1, s2)
+begin
+
+case (s0 | s1 | s2)
+3'b000 : out <= a;
+3'b001 : out <= b;
+3'b010 : out <= c;
+3'b011 : out <= d;
+3'b100 : out <= e;
+3'b101 : out <= f;
+3'b110 : out <= g;
+3'b111 : out <= h;
+
+
+endcase
+
+end
+endmodule

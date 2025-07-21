@@ -1,0 +1,18 @@
+////ody shbayeh full adder//// 
+////project_1201462////
+
+module fullsub_ody_1201462 #(parameter n=3) (x,y,c_in,c_out,res);//module for subtractor
+  //inputs
+input signed [n:0] x ;
+input signed [n:0] y ;
+input c_in;
+//outputs
+output reg c_out;
+output reg signed  [n:0] res;
+//the operation to sub y from x
+ always @ (*)
+  begin  
+    res = x^y^c_in;
+    c_out = (~x&y)|(~(x^y) & c_in);
+  end  
+endmodule 

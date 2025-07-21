@@ -1,0 +1,41 @@
+////ody shbayeh ALU //// 
+////project_1201462////
+module ALU_ody_1201462 #(parameter n=3)(x,y,s,o);
+//inputs
+input signed [n:0] x ;
+input signed [n:0] y ;
+input [2:0] s;
+//outputs
+output signed [n+2:0] o;
+//wires
+wire [n+2:0] res1,res2,res3,res4;
+wire [n:0] res5,res6,res7,res8;
+wire [n+2:0] final_res1,final_res2,final_res3,final_res4;
+
+// (Y+X)/2
+fulladder_ody_1201462(x,y,s[2],res1[n+1],res1[n:0]);
+rightshift_ody_1201462(res1[n+1:0],final_res1[n+1:0]);
+
+// (Y+X)*2
+fulladder_ody_1201462(x,y,s[2],res2[n+1],res2[n:0]);
+leftshift_ody_1201462(res2[n+2:0],final_res2[n+1:0]);
+
+// (X/2)+Y
+rightshift_ody_1201462(x,res3[n:0]);
+fulladder_ody_1201462(res3,y,s[2],final_res3[n+1],final_res3[n:0]);
+
+// X-(Y/2)
+rightshift_ody_1201462(y,res4[n:0]);
+fullsub_ody_1201462(x,res4[n:0],s[2],final_res4[n+1],final_res4[n:0]);
+
+// X NAND Y
+nand(res5,x,y);
+// NOT(X)
+not(res6,x);
+// X NOR Y
+nor(res7,x,y);
+// X XOR Y
+xor(res8,x,y);
+
+mux8to1_ody_1201462 (final_res1,final_res2,final_res3,final_res4,res5,res6,res7,res8,s[0],s[1],s[2],o);
+endmodule 

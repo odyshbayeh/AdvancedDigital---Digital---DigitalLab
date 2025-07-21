@@ -1,0 +1,14 @@
+////ody shbayeh left shift reg//// 
+////project_1201462////
+
+module leftshift_ody_1201462 #(parameter n=3) (x,y);
+input signed [n:0] x ;
+output reg signed [n+1:0] y ;
+
+always @(x)
+ begin 
+ 
+ y = x*2;
+ end 
+ 
+ endmodule 

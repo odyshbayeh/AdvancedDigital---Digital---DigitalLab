@@ -1,0 +1,23 @@
+module ALU_behav_ody_1201462 #(parameter n=3)(X, Y, S, O); 
+
+input singed [n:0] X, Y;
+input [2:0] S;
+output reg [n+2:0] O;
+
+begin
+always @(*)
+
+	if (S[2] == 1'b0)
+
+		Y1=A+B;//addition
+		Y2=A-B;//subtraction
+
+	if else(S[2] == 1'b1)
+	begin
+		Y3=A*B;//multiplication
+		Y4=A/B;//division
+		Y5=A%B;//modulus of A divided by B
+	end 
+end
+
+endmodule

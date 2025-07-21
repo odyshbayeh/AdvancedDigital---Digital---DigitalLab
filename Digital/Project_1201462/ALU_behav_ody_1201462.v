@@ -1,0 +1,35 @@
+module ALU_behav_ody_1201462 #(parameter n=3)(X, Y, S, O); ///module 
+//inputs
+input signed [n:0] X, Y;
+input [2:0] S;
+//output
+output reg signed[n+2:0] O;
+
+//operation to choose the final value what to apper by behavioral implimentation
+always @ (*)
+begin
+if (S[2:0] == 3'b000)
+	 O = (X+Y)/2;
+else if(S[2:0] == 3'b001)
+	 O = (X+Y)*2;
+else if(S[2:0] == 3'b010)
+	 O = (X/2)+Y;
+else if(S[2:0] == 3'b011)
+	 O = X-(Y/2);
+else if(S[2:0] == 3'b010)
+	 O = (X/2)+Y;
+else if(S[2:0] == 3'b011)
+	 O = X-(Y/2);
+else if(S[2:0] == 3'b100)
+	 O = !(X&Y);
+else if(S[2:0] == 3'b101)
+	 O = !X;
+else if(S[2:0] == 3'b110)
+	 O = !(X|Y);
+else if(S[2:0] == 3'b111)
+	 O = X^Y;
+
+
+end
+
+endmodule 
